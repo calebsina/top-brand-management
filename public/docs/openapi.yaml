@@ -1,0 +1,197 @@
+openapi: 3.0.3
+info:
+  title: 'Brand API Documentation for Brands api'
+  description: ''
+  version: 1.0.0
+servers:
+  -
+    url: 'http://localhost'
+tags:
+  -
+    name: Brands
+    description: ''
+paths:
+  /api/brands:
+    get:
+      summary: "Get top brands for a user's country\n\nFetches the toplist of brands using the CF-IPCountry header. If no brands match the country,\nit returns those marked as \"DEFAULT\"."
+      operationId: getTopBrandsForAUsersCountryFetchesTheToplistOfBrandsUsingTheCFIPCountryHeaderIfNoBrandsMatchTheCountryitReturnsThoseMarkedAsDEFAULT
+      description: ''
+      parameters:
+        -
+          in: header
+          name: CF-IPCountry
+          description: ''
+          example: US
+          schema:
+            type: string
+      responses:
+        200:
+          description: Success
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: object
+                example:
+                  -
+                    brand_id: 1
+                    brand_name: Nike
+                    brand_image: 'https://example.com/nike.png'
+                    rating: 5
+                    country_code: US
+      tags:
+        - Brands
+      security: []
+    post:
+      summary: "Create a new brand\n\nAdds a brand to the toplist with optional country scoping."
+      operationId: createANewBrandAddsABrandToTheToplistWithOptionalCountryScoping
+      description: ''
+      parameters: []
+      responses: {  }
+      tags:
+        - Brands
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                brand_name:
+                  type: string
+                  description: 'The name of the brand.'
+                  example: Adidas
+                  nullable: false
+                brand_image:
+                  type: string
+                  description: 'A valid URL to the brand logo.'
+                  example: 'https://example.com/adidas.png'
+                  nullable: false
+                rating:
+                  type: integer
+                  description: 'Rating from 1 to 5.'
+                  example: 4
+                  nullable: false
+                country_code:
+                  type: string
+                  description: 'Optional ISO-2 country code.'
+                  example: US
+                  nullable: true
+              required:
+                - brand_name
+                - brand_image
+                - rating
+      security: []
+  '/api/brands/{id}':
+    get:
+      summary: 'Get a specific brand'
+      operationId: getASpecificBrand
+      description: ''
+      parameters: []
+      responses:
+        200:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  brand_id: 2
+                  brand_name: Puma
+                  brand_image: 'https://example.com/puma.png'
+                  rating: 4
+                  country_code: US
+                properties:
+                  brand_id:
+                    type: integer
+                    example: 2
+                  brand_name:
+                    type: string
+                    example: Puma
+                  brand_image:
+                    type: string
+                    example: 'https://example.com/puma.png'
+                  rating:
+                    type: integer
+                    example: 4
+                  country_code:
+                    type: string
+                    example: US
+      tags:
+        - Brands
+      security: []
+    put:
+      summary: "Update a brand\n\nUpdate brand info partially or fully."
+      operationId: updateABrandUpdateBrandInfoPartiallyOrFully
+      description: ''
+      parameters: []
+      responses: {  }
+      tags:
+        - Brands
+      requestBody:
+        required: false
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                brand_name:
+                  type: string
+                  description: 'The name of the brand.'
+                  example: consequatur
+                  nullable: false
+                brand_image:
+                  type: string
+                  description: 'A valid image URL.'
+                  example: consequatur
+                  nullable: false
+                rating:
+                  type: integer
+                  description: 'Rating from 1 to 5.'
+                  example: 17
+                  nullable: false
+                country_code:
+                  type: string
+                  description: 'Optional ISO-2 country code.'
+                  example: consequatur
+                  nullable: true
+      security: []
+    delete:
+      summary: 'Delete a brand'
+      operationId: deleteABrand
+      description: ''
+      parameters: []
+      responses:
+        200:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  message: 'Deleted successfully'
+                properties:
+                  message:
+                    type: string
+                    example: 'Deleted successfully'
+      tags:
+        - Brands
+      security: []
+    parameters:
+      -
+        in: path
+        name: id
+        description: 'The ID of the brand.'
+        example: 17
+        required: true
+        schema:
+          type: integer
+      -
+        in: path
+        name: brand_id
+        description: 'The ID of the brand.'
+        example: 2
+        required: true
+        schema:
+          type: integer

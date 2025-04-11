@@ -1,0 +1,241 @@
+{
+    "variable": [
+        {
+            "id": "baseUrl",
+            "key": "baseUrl",
+            "type": "string",
+            "name": "string",
+            "value": "http:\/\/localhost"
+        }
+    ],
+    "info": {
+        "name": "Brand API Documentation for Brands api",
+        "_postman_id": "440e0cf1-95e2-4104-afcb-f50d8e01c71d",
+        "description": "",
+        "schema": "https:\/\/schema.getpostman.com\/json\/collection\/v2.1.0\/collection.json"
+    },
+    "item": [
+        {
+            "name": "Brands",
+            "description": "",
+            "item": [
+                {
+                    "name": "Get top brands for a user's country\n\nFetches the toplist of brands using the CF-IPCountry header. If no brands match the country,\nit returns those marked as \"DEFAULT\".",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/brands",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/brands"
+                        },
+                        "method": "GET",
+                        "header": [
+                            {
+                                "key": "CF-IPCountry",
+                                "value": "US"
+                            },
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": null,
+                        "description": "",
+                        "auth": {
+                            "type": "noauth"
+                        }
+                    },
+                    "response": [
+                        {
+                            "header": [],
+                            "code": 200,
+                            "body": "[\n  {\n    \"brand_id\": 1,\n    \"brand_name\": \"Nike\",\n    \"brand_image\": \"https:\/\/example.com\/nike.png\",\n    \"rating\": 5,\n    \"country_code\": \"US\"\n  }\n]",
+                            "name": "Success"
+                        }
+                    ]
+                },
+                {
+                    "name": "Create a new brand\n\nAdds a brand to the toplist with optional country scoping.",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/brands",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/brands"
+                        },
+                        "method": "POST",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\"brand_name\":\"Adidas\",\"brand_image\":\"https:\\\/\\\/example.com\\\/adidas.png\",\"rating\":4,\"country_code\":\"US\"}"
+                        },
+                        "description": "",
+                        "auth": {
+                            "type": "noauth"
+                        }
+                    },
+                    "response": []
+                },
+                {
+                    "name": "Get a specific brand",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/brands\/:id",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/brands\/:id",
+                            "variable": [
+                                {
+                                    "id": "id",
+                                    "key": "id",
+                                    "value": "17",
+                                    "description": "The ID of the brand."
+                                },
+                                {
+                                    "id": "brand_id",
+                                    "key": "brand_id",
+                                    "value": "2",
+                                    "description": "The ID of the brand."
+                                }
+                            ]
+                        },
+                        "method": "GET",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": null,
+                        "description": "",
+                        "auth": {
+                            "type": "noauth"
+                        }
+                    },
+                    "response": [
+                        {
+                            "header": [],
+                            "code": 200,
+                            "body": "{\n  \"brand_id\": 2,\n  \"brand_name\": \"Puma\",\n  \"brand_image\": \"https:\/\/example.com\/puma.png\",\n  \"rating\": 4,\n  \"country_code\": \"US\"\n}",
+                            "name": ""
+                        }
+                    ]
+                },
+                {
+                    "name": "Update a brand\n\nUpdate brand info partially or fully.",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/brands\/:id",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/brands\/:id",
+                            "variable": [
+                                {
+                                    "id": "id",
+                                    "key": "id",
+                                    "value": "17",
+                                    "description": "The ID of the brand."
+                                },
+                                {
+                                    "id": "brand_id",
+                                    "key": "brand_id",
+                                    "value": "3",
+                                    "description": "The ID of the brand to update."
+                                }
+                            ]
+                        },
+                        "method": "PUT",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\"brand_name\":\"consequatur\",\"brand_image\":\"consequatur\",\"rating\":17,\"country_code\":\"consequatur\"}"
+                        },
+                        "description": "",
+                        "auth": {
+                            "type": "noauth"
+                        }
+                    },
+                    "response": []
+                },
+                {
+                    "name": "Delete a brand",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/brands\/:id",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/brands\/:id",
+                            "variable": [
+                                {
+                                    "id": "id",
+                                    "key": "id",
+                                    "value": "17",
+                                    "description": "The ID of the brand."
+                                },
+                                {
+                                    "id": "brand_id",
+                                    "key": "brand_id",
+                                    "value": "5",
+                                    "description": "The ID of the brand to delete."
+                                }
+                            ]
+                        },
+                        "method": "DELETE",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": null,
+                        "description": "",
+                        "auth": {
+                            "type": "noauth"
+                        }
+                    },
+                    "response": [
+                        {
+                            "header": [],
+                            "code": 200,
+                            "body": "{\n  \"message\": \"Deleted successfully\"\n}",
+                            "name": ""
+                        }
+                    ]
+                }
+            ]
+        }
+    ],
+    "auth": {
+        "type": "noauth"
+    }
+}
